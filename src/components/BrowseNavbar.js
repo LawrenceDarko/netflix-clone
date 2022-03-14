@@ -43,7 +43,7 @@ const BrowseNav = styled.div`
     width: 98%;
     height: 10vh;
     background-color: ${props => props.navbarColorFill ? '#111' : 'transparent'};
-    z-index: 10;
+    z-index: 20;
     top: 0px;
     /* margin: 20px; */
     padding-left: 20px;
@@ -51,7 +51,7 @@ const BrowseNav = styled.div`
     margin-right: 20px;
     position: fixed;
     /* border: 1px solid white; */
-    transition: all 0.2s;
+    transition: background-color 0.3s ease-in-out;
 `
 const NavLogo = styled.div`
     display: flex;

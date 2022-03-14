@@ -28,7 +28,7 @@ const MoviePage = () => {
           {banner.results && <img key={banner.results[bannerLink].id} src={`https://image.tmdb.org/t/p/original${banner.results[bannerLink].backdrop_path}`} alt={banner.results[bannerLink].name} />}
           <HeaderTextContainer>
             {/* <h1>The Originals</h1> */}
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita est placeat sunt recusandae, totam beatae magnam velit nesciunt.</p>
+            <p>A death row inmate in an infamous Cnetral American prison learns he's been bought by a reality show mogul who wants to cast him in his latest project.</p>
             <HeaderButtons>
               <PlayButton><p>Play</p></PlayButton>
               <InfoButton><p>More Info</p></InfoButton>
@@ -42,7 +42,7 @@ const MoviePage = () => {
             <MoviesRow title={"Popular on Netflix"} movieLink={request.fetchNetflixOrignals} />
             <MoviesRow title={"Trending Now"} movieLink={request.fetchTrending} />
             <MoviesRow title={"Hollywood Movies"} movieLink={request.fetchRomanceMovies} />
-            <MoviesRow title={"TV Comedies"} movieLink={request.fetchComedyMovies} />
+            <MoviesRow title={"For Kids"} movieLink={request.fetchComedyMovies} />
             <MoviesRow title={"Documentries"} movieLink={request.fetchDocumentaries} />
             <MoviesRow title={"Romance"} movieLink={request.fetchRomanceMovies} />
             <MoviesRow title={"Horror Movies"} movieLink={request.fetchHorrorMovies} />
@@ -82,7 +82,7 @@ const PageWrapper = styled.div`
     flex-direction: column;
     background-color: #111;
     height: auto;
-    position: relative;
+    /* position: relative; */
     z-index: -2;
 
     /* opacity: 0.9; */
@@ -152,6 +152,9 @@ const PlayButton = styled.div`
     width: 17vh;
     background-color: white;
     border-radius: 4px;
+    cursor: pointer;
+
+    
     
     > p{
       font-weight: bold;
@@ -164,8 +167,13 @@ const InfoButton = styled.div`
     /* margin-right: 2vh; */
     height: 6vh;
     width: 22vh;
-    background-color: #333;
+    background-color: rgba(109,109,110,0.4);
     border-radius: 4px;
+    cursor: pointer;
+
+    &:hover {
+      border: 2px solid white;
+    }
 
     > p{
       font-weight: bold;
