@@ -9,8 +9,14 @@ const MoviePage = () => {
   //  const [imageLink, setImageLink] = useState([])
    const [banner, setBanner] = useState([])
 
+  //  const movieArry = [request.fetchActionMovies, request.fetchAdventureMovies, request.fetchComedyMovies, request.fetchDramaMovies, request.fetchHorrorMovies, request.fetchMysteryMovies, request.fetchRomanceMovies, request.fetchSciFiMovies, request.fetchThrillerMovies]
+  //  const randomMOvieLink = Math.floor(Math.random() * 5);
+  //  const randomMovie = movieArry[randomMOvieLink];
+
+  //  console.log("Random movie ",randomMovie)
+   
    useEffect(() => {
-    fetch(`https://api.themoviedb.org/3${request.fetchNetflixOrignals}`)
+    fetch(`https://api.themoviedb.org/3${request.fetchHorrorMovies}`)
     .then(response => response.json())
     .then(data => setBanner(data))
     // const bannerLink = `banner.results[0].backdrop_path`
@@ -28,7 +34,7 @@ const MoviePage = () => {
           {banner.results && <img key={banner.results[bannerLink].id} src={`https://image.tmdb.org/t/p/original${banner.results[bannerLink].backdrop_path}`} alt={banner.results[bannerLink].name} />}
           <HeaderTextContainer>
             {/* <h1>The Originals</h1> */}
-            <p>A death row inmate in an infamous Cnetral American prison learns he's been bought by a reality show mogul who wants to cast him in his latest project.</p>
+            {banner.results && <p>{banner.results[bannerLink].overview}</p>}
             <HeaderButtons>
               <PlayButton><p>Play</p></PlayButton>
               <InfoButton><p>More Info</p></InfoButton>
@@ -46,6 +52,7 @@ const MoviePage = () => {
             <MoviesRow title={"Documentries"} movieLink={request.fetchDocumentaries} />
             <MoviesRow title={"Romance"} movieLink={request.fetchRomanceMovies} />
             <MoviesRow title={"Horror Movies"} movieLink={request.fetchHorrorMovies} />
+            <MoviesRow title={"Action Movies"} movieLink={request.fetchActionMovies} />
             <Footer footerColor />
         </PageWrapper>
     </>
@@ -111,7 +118,7 @@ const HeaderTextContainer = styled.div`
 
     > p {
       color: white;
-      font-size: 1.4rem;
+      font-size: 1.3rem;
       font-family: 'Netflix Sans','Helvetica Neue',Helvetica,Arial,sans-serif;
       margin-block-start: 0.9rem;
     }
@@ -138,6 +145,8 @@ const HeaderButtons = styled.div`
     /* position: absolute; */
     height: 10vh;
     width: 50vh;
+    /* position: absolute; */
+    z-index: 100;
     /* margin-top: 70vh; */
     /* margin-left: 60px; */
     /* width: 550px; */
