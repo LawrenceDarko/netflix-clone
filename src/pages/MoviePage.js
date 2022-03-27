@@ -146,7 +146,7 @@ const HeaderButtons = styled.div`
     height: 10vh;
     width: 50vh;
     /* position: absolute; */
-    z-index: 100;
+    z-index: 10;
     /* margin-top: 70vh; */
     /* margin-left: 60px; */
     /* width: 550px; */

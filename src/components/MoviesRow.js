@@ -17,15 +17,25 @@ const MoviesRow = ({title, movieLink, headerImage}) => {
       console.log(`https://api.themoviedb.org/3${movieLink}`)
     }, [movieLink])
 
-    
+    const ScrollR = () => { 
+        const left = document.querySelector('.myScroller');
+        left.scrollLeft += 400;
+     }
+
+    const ScrollL = () => {
+        const left = document.querySelector('.myScroller');
+        left.scrollLeft -= 400;
+    }
 
 
   return (
         <Wrapper>
             <h1>{title}</h1>
-            <MovieSlideer>
+            <MovieSlideer className='myScroller'>
+                <ScrollerR onClick={()=>{ScrollR()}}><p>&#xFFEB;</p></ScrollerR>
                 {data.results?.map(movie => (<MovieContainer key={movie.id}> <img src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`} key={movie.id} alt={movie.name} /></MovieContainer> ))}
                 {/* <MovieContainer movieLink={movieLink} /> */}
+                <ScrollerL onClick={()=>{ScrollL()}}><p>&#xFFE9;</p></ScrollerL>
             </MovieSlideer>
         </Wrapper>
   )
@@ -48,6 +58,7 @@ const MovieSlideer = styled.div`
     /* position: absolute; */
     padding: 6px;
     padding-left: 50px;
+    transition: 300ms;
     
 
     ::-webkit-scrollbar {
@@ -93,6 +104,7 @@ const MovieContainer = styled.div`
 `
 const Wrapper = styled.div`
     /* position: absolute; */
+    /* border: 2px solid red; */
     
     z-index: 10;
     > h1 {
@@ -103,5 +115,63 @@ const Wrapper = styled.div`
         padding-block-start: 0em;
         /* margin-block-end: 0em;
         padding-block-end: 0em; */
+    }
+`
+const ScrollerR = styled.div`
+    display: flex;
+    /* flex-direction: row; */
+    justify-content: center;
+    align-items: center;
+    height: 130px;
+    width: 40px;
+    background-color: transparent;
+    opacity: 0.5;
+    position: absolute;
+    z-index: 50;
+    left: 0px;
+    cursor: pointer;
+
+
+    > p {
+        color: transparent;
+        cursor: pointer;
+    }
+
+    &:hover {
+        height: 130px;
+        background-color: #333;
+
+        > p {
+            color: #9EA5A5;
+            font-size: 50px;
+        }
+    }
+`
+const ScrollerL = styled.div`
+    display: flex;
+    /* flex-direction: row; */
+    justify-content: center;
+    align-items: center;
+    height: 130px;
+    width: 40px;
+    background-color: transparent;
+    opacity: 0.3;
+    position: absolute;
+    z-index: 50;
+    right: 0;
+
+    > p {
+        color: transparent;
+        cursor: pointer;
+    }
+
+    &:hover {
+        height: 130px;
+        background-color: #333;
+
+        > p {
+            color: #9EA5A5;
+            font-size: 50px;
+        }
     }
 `
