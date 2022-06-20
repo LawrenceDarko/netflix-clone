@@ -1,12 +1,13 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import styled from 'styled-components';
 // import MovieContainer from './MovieContainer';
 
-const MoviesRow = ({title, movieLink, headerImage}) => {
+const MoviesRow = ({title, movieLink, scrollClass, headerImage}) => {
 
     // HeaderImage("data")
 
-    const [data, setData] = useState([])
+    const [data, setData] = useState([]);
+    const scrollRef = useRef(null);
     
     // const link = 'users'
     // Fetching Data Using then
@@ -18,20 +19,27 @@ const MoviesRow = ({title, movieLink, headerImage}) => {
     }, [movieLink])
 
     const ScrollR = () => { 
-        const left = document.querySelector('.myScroller');
-        left.scrollLeft += 400;
+        // const left = document.querySelector('.myScroller');
+        // left.scrollLeft += 400;
+        scrollRef.current.scrollLeft += 400;
      }
 
     const ScrollL = () => {
-        const left = document.querySelector('.myScroller');
-        left.scrollLeft -= 400;
+        // const left = document.querySelector('.myScroller');
+        // left.scrollLeft -= 400;
+        scrollRef.current.scrollLeft -= 400;
     }
 
+    // const scroll = (scrollOffset) => {
+    //     ref.current.scrollLeft += scrollOffset;
+    //   };
+    
+    // console.log(scrollClass)
 
   return (
         <Wrapper>
             <h1>{title}</h1>
-            <MovieSlideer className='myScroller'>
+            <MovieSlideer ref={scrollRef} scrl={scrollClass} className='myScroller'>
                 <ScrollerR onClick={()=>{ScrollR()}}><p>&#xFFEB;</p></ScrollerR>
                 {data.results?.map(movie => (<MovieContainer key={movie.id}> <img src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`} key={movie.id} alt={movie.name} /></MovieContainer> ))}
                 {/* <MovieContainer movieLink={movieLink} /> */}
@@ -58,7 +66,7 @@ const MovieSlideer = styled.div`
     /* position: absolute; */
     padding: 6px;
     padding-left: 50px;
-    transition: 300ms;
+    scroll-behavior: smooth;
     
 
     ::-webkit-scrollbar {
